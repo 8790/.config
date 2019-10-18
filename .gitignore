@@ -1,0 +1,10 @@
+# ignore everything
+/*
+/*/
+
+# ... but these:
+!/ranger/
+!/neofetch/
+!/.zshrc
+!/.gitignore
+!/README.md
