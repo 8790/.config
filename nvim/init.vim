@@ -108,6 +108,8 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 let g:onedark_termcolors=256
 colorscheme DarkPlus
 let &t_ut=''
+highlight LineNr guibg=NONE ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE      " 使背景透明
 
 set termguicolors
 if &term =~# '^screen'
