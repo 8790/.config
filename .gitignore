@@ -1,10 +1,21 @@
 # ignore everything
 /*
 /*/
+/nvim/*.swp
+/nvim/view/
+/nvim/.DS_Store
+/nvim/plugged/
+/nvim/sessions/
+/nvim/autoload/
+/nvim/tmp/
+/nvim/.netrwhist
+/nvim/_machine_specific.vim
+
 
 # ... but these:
 !/ranger/
 !/neofetch/
 !/.zshrc
+!/nvim
 !/.gitignore
 !/README.md
