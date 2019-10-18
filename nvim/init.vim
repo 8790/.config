@@ -109,6 +109,7 @@ let g:onedark_termcolors=256
 colorscheme DarkPlus
 let &t_ut=''
 highlight LineNr guibg=NONE ctermbg=NONE
+highlight SignColumn ctermbg=NONE
 highlight Normal guibg=NONE ctermbg=NONE      " 使背景透明
 
 set termguicolors
@@ -303,7 +304,7 @@ Plug 'mattn/emmet-vim'
 
 " Git
 Plug 'rhysd/conflict-marker.vim'    "解决冲突时使用插件
-Plug 'mhinz/vim-signify'            "编辑时显示代码更改
+Plug 'airblade/vim-gitgutter'       "编辑时显示代码更改
 "Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Python
@@ -312,10 +313,10 @@ Plug 'vim-scripts/indentpython.vim'
 
 
 
-" Other useful utilities
+" 一些有用的小工具
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-surround' " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
-Plug 'godlygeek/tabular' " type ;Tab /= to align the =   使用Tabular.vim对齐文本
+Plug 'tpope/vim-surround'       " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'godlygeek/tabular'        " 输入 ;Tab /=  以等号来对齐   (使用Tabular.vim对齐文本
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 
 " Markdown
@@ -367,15 +368,6 @@ au User Ncm2Plugin call ncm2#register_source({
         \ })
 
 
-" ===
-" === Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
-" ===
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-let has_machine_specific_file = 0
-exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
-source ~/.config/nvim/_machine_specific.vim
 
 
 " *********************************************
@@ -568,21 +560,43 @@ let g:NERDTreeIndicatorMapCustom = {
             \ }
 
 
-"" *********************************************
-" 代码格式化插件
-"" *********************************************
-"F3自动格式化代码
+" ===
+" === 代码格式化插件
+" === 
+
+" F3自动格式化代码
 noremap <F3> :Autoformat<CR>
 let g:autoformat_verbosemode=1
 
-"" *********************************************
-" vim-markdown
-" *********************************************
+
+
+" ===
+" === vim-markdown
+" === 
+
 " 禁用所有折叠
 let g:vim_markdown_folding_disabled = 1
 
 " 支持Front-Matter
 let g:vim_markdown_frontmatter = 1
 
-"
-"
+
+
+" ===
+" === git-gutter
+" === 显示git更改标志插件
+" ===
+" let g:gitgutter_override_sign_column_highlight = 0      " 自定义git标志列的背景色
+
+
+
+" ===
+" === 创建一个单独的 _machine_specific.vim 文件来调整每台机器自己的变量
+" ===
+let has_machine_specific_file = 1
+if empty(glob('~/.config/nvim/_machine_specific.vim'))
+let has_machine_specific_file = 0
+exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
+endif
+source ~/.config/nvim/_machine_specific.vim
+
