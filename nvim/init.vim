@@ -15,6 +15,8 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -62,12 +64,16 @@ set wrap                        " 启用自动折行
 set tw=0                        " 自动折行禁止自动断开长行
 set formatoptions-=tc           " 更好的自动格式化
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码补全
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set completeopt-=preview " 补全时不显示窗口，只显示补全列表
 set wildmode=longest,list,full
+
+
 
 " *********************************************
 " 分割布局相关
@@ -80,11 +86,15 @@ nnoremap <Leader>K <C-W><C-K>
 nnoremap <Leader>L <C-W><C-L>
 nnoremap <Leader>H <C-W><C-H>
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 搜索设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 exec "nohlsearch"
 set smartcase           " 搜索时智能大小写
+
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 缓存设置
@@ -94,6 +104,8 @@ set noswapfile          " 禁止生成临时文件
 set autowrite           " 设置自动保存
 set confirm             " 在处理未保存或只读文件的时候，弹出确认
 
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 编码设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,21 +114,6 @@ set helplang=cn
 set termencoding=utf-8
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 颜色主题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:onedark_termcolors=256
-colorscheme DarkPlus
-let &t_ut=''
-highlight LineNr guibg=NONE ctermbg=NONE
-highlight SignColumn ctermbg=NONE
-highlight Normal guibg=NONE ctermbg=NONE      " 使背景透明
-
-set termguicolors
-if &term =~# '^screen'
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,73 +121,81 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map ; :
 
-" Save & quit
+" 保存和退出
 map Q :q<CR>
 map S :w<CR>
 
-" Search
+" 搜索
 map <LEADER><CR> :nohlsearch<CR>
 noremap n nzz
 noremap N Nzz
 
-" Press ` to change case (instead of ~)
+" 按下 ` 键来更改大小写
 map ` ~
 
-" New cursor movement (the default arrow keys are used for resizing windows)
+" 新的光标移动方式，添加大写移动来快速移动(默认的光标键用来调整窗口大小)
 noremap K 5k
 noremap J 5j
 noremap H 0
 noremap L $
-
-" Faster in-line navigation
 noremap W 5w
 noremap B 5b
 
-" Ctrl + J or K will move up/down the view port without moving the cursor
+" 使用 Ctrl + J 或 K 在不移动光标的情况下来上下移动视口
 noremap <C-k> 5<C-y>
 noremap <C-j> 5<C-e>
 inoremap <C-k> <Esc>5<C-y>a
 inoremap <C-j> <Esc>5<C-e>a
 
-" Disabling the default s key
+" 禁用默认的s键
 noremap s <nop>
 
-" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+" 使用s + 上下左右 来分屏
 map sk :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
 map sj :set splitbelow<CR>:split<CR>
 map sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
 map sl :set splitright<CR>:vsplit<CR>
 
-" Resize splits with arrow keys
+" 使用箭头键来调整分屏大小
 map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 
-
+" 使用空格键 + / 来输入终端命令
+" 使用空格键 + r 来将终端输出输入到光标指定位置
+" 使用空格键 + sr 进行全局查找替换
+"   （:%s/foo/bar 表示将光标下首次出现的foo替换为bar
+"   （:%s/foo/bar/g 表示全局替换
 map <LEADER>/ :!
 map <LEADER>r :r !
 map <LEADER>sr :%s/
 
-" Open the vimrc file anytime
+" 在任何地方打开该配置文件
 map <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 " 在当前行下插入一行并且不改变光标位置
 map <LEADER>o o<Esc>k
 
-" Press ` to change case (instead of ~)
-map ` ~
-
+" Ctrl + c 将光标所在的行放在屏幕中间
 imap <C-c> <Esc>zza
 nmap <C-c> zz
 
-" Press Space Twice To Jump To The Next '<++>' And Edit It
+" 按两次空格键调到下一个 '<++>' 来编辑它（Placeholder
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
-" Call figlet
+" 调用figlet（使用图形拼出文字
+" 
+"   __ _       _      _   
+"  / _(_) __ _| | ___| |_ 
+" | |_| |/ _` | |/ _ \ __|
+" |  _| | (_| | |  __/ |_ 
+" |_| |_|\__, |_|\___|\__|
+"        |___/            
 map tx :r !figlet
 
-"autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+" 在保存的时候自动更新vim配置
 if has('autocmd') " ignore this section if your vim does not support autocommands
     augroup reload_vimrc
         autocmd!
@@ -199,13 +204,13 @@ if has('autocmd') " ignore this section if your vim does not support autocommand
 endif
 
 
-" markdown快捷键设置
+" 编辑模式下markdown快捷键设置
 source ~/.config/nvim/snippits.vim
 
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 编译运行
+" 直接运行
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <F8> :call CompileRun()<CR>
 func! CompileRun()
@@ -247,7 +252,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tomasiser/vim-code-dark'
 
-" File navigation
+" 文件导航插件
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
@@ -305,7 +310,6 @@ Plug 'mattn/emmet-vim'
 " Git
 Plug 'rhysd/conflict-marker.vim'    "解决冲突时使用插件
 Plug 'airblade/vim-gitgutter'       "编辑时显示代码更改
-"Plug 'gisphm/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 
 " Python
 Plug 'vim-scripts/indentpython.vim'
@@ -314,8 +318,9 @@ Plug 'vim-scripts/indentpython.vim'
 
 
 " 一些有用的小工具
+
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-surround'       " type ysks' to wrap the word with '' or type cs'` to change 'word' to `word`
+Plug 'tpope/vim-surround'       " 输入 ysks' 来用''包围这个单词或者输入 cs'` 将''更改为``
 Plug 'godlygeek/tabular'        " 输入 ;Tab /=  以等号来对齐   (使用Tabular.vim对齐文本
 Plug 'scrooloose/nerdcommenter' " in <space>cc to comment a line
 
@@ -330,6 +335,24 @@ Plug 'iamcco/mathjax-support-for-mkdp', { 'do': { -> mkdp#util#install_sync() },
 
 call plug#end()
 
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 颜色主题
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:onedark_termcolors=256
+colorscheme codedark
+let &t_ut=''
+highlight LineNr guibg=NONE ctermbg=NONE
+highlight SignColumn ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE      " 使背景透明
+
+set termguicolors
+if &term =~# '^screen'
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
 
 
 " NCM2
@@ -381,6 +404,8 @@ autocmd VimEnter * wincmd w
 map tt :NERDTreeToggle<CR>
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
+
+
 " *********************************************
 " vim-airline
 " *********************************************
@@ -393,7 +418,10 @@ set guifont=Roboto\ Mono\ for\ Powerline:h14
 
 let g:airline_section_b = '%{strftime("%m/%d - %H:%M")}' "显示时间
 
-let g:airline_theme="bubblegum"
+" let g:airline_theme="bubblegum"
+let g:airline_theme="codedark"
+
+
 
 " *********************************************
 " vim-indent-guide
@@ -405,12 +433,15 @@ let g:indent_guides_color_change_percent = 1
 silent! unmap <LEADER>ig
 autocmd WinEnter * silent! unmap <LEADER>ig
 
+
+
 " *********************************************
 " ale
 " *********************************************
 let b:ale_linters = [] "['pylint']
 " let b:ale_fixers = ['autopep8', 'yapf']
 let g:ale_python_pylint_options = "--extension-pkg-whitelist=pygame"
+
 
 
 " *********************************************
@@ -442,6 +473,7 @@ let g:rainbow_conf = {
             \}
 
 
+
 " *********************************************
 " 多光标
 " *********************************************
@@ -453,6 +485,7 @@ let g:rainbow_conf = {
 "let g:multi_cursor_skip_key='<C-x>'
 "
 "let g:multi_cursor_quit_key='<Esc>'
+
 
 
 " *********************************************
@@ -500,15 +533,20 @@ let g:mkdp_open_to_the_world = 0
 " 设置为 1, 在使用的网络中的其他计算机也能访问预览页面
 " 默认只监听本地（127.0.0.1），其他计算机不能访问
 
+
+
 " ===
 " === Taglist
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
 
+
+
 " ===
 " === vim-table-mode
 " ===
 map <LEADER>tm :TableModeToggle<CR>
+
 
 
 " ===
@@ -538,11 +576,14 @@ let g:SignatureMap = {
             \ 'ListLocalMarkers'   :  "m?"
             \ }
 
+
 " ===
 " === Undotree
 " ===
 let g:undotree_DiffAutoOpen = 0
 map <F7> :UndotreeToggle<CR>
+
+
 
 " ==
 " == NERDTree-git
@@ -558,6 +599,7 @@ let g:NERDTreeIndicatorMapCustom = {
             \ "Clean"     : "✔︎",
             \ "Unknown"   : "?"
             \ }
+
 
 
 " ===
