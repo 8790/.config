@@ -259,26 +259,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " 代码格式化插件
 Plug 'Chiel92/vim-autoformat'
 
-" 代码补全插件
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-
-
-Plug 'ObserverOfTime/ncm2-jc2', {'for': ['java', 'jsp', 'md']}
-Plug 'artur-shaik/vim-javacomplete2', {'for': ['java', 'jsp', 'md']}
-
-
 "" Taglist
 Plug 'majutsushi/tagbar', { 'on': 'TagbarOpenAutoClose' }
 

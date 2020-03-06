@@ -118,24 +118,13 @@ alias -s java='vim'
 alias -s txt='vim'
 
 alias sudo="sudo -E"
-# alias rm="rmtrash"
 alias ip="curl ifconfig.me"
 alias s="neofetch"
 alias ra="ranger"
 alias lg="lazygit"
 alias c="clear"
 
-# alias vd="vuepress dev ."
-# alias vb="vuepress build ."
 # export LC_ALL=zh_CN.UTF-8
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# proxy list
-# alias proxy='export all_proxy=socks5://127.0.0.1:1081'
-# alias unproxy='unset all_proxy'
-# export all_proxy=socks5://127.0.0.1:1081
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$PATH:$HOME/.rvm/bin"
 
